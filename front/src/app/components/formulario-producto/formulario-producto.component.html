@@ -1,0 +1,40 @@
+<form #productoFormulario="ngForm" (ngSubmit)="FormularioUp()">
+
+    <input id="nombre" name="nombre" type="text" placeholder="Ingresa el nombre del producto" required #nombre="ngModel" [(ngModel)]="Producto.nombre" /> 
+    <input id="marca" name="marca" type="text" placeholder="Ingresa la marca del producto" required #marca="ngModel" [(ngModel)]="Producto.marca" /> 
+    <input id="precio" name="precio" type="text" placeholder="Ingresa el precio del producto" required #precio="ngModel" [(ngModel)]="Producto.precio" /> 
+    <input id="unidades" name="unidades" type="text" placeholder="Ingresa las unidades del producto" required #unidades="ngModel" [(ngModel)]="Producto.unidades" /> 
+    <br/><br/>
+    <button type="submit"> Registrar producto </button>   
+
+</form>
+
+<div *ngFor="let producto of productosEncontrados">
+    <!-- CREAMOS UN DIV QUE CONTENDRA UN FOR EL CUAL SE MULTIPLICARA LAS VECES NECESARIAS -->
+    <form #actualizarProductosForm="ngForm"> <!-- UN ID QUE NOS INDICARA QUE ESTE FORM ES ANGULAR -->
+        <label>Nombre</label>
+        <input type="text" id="nombre" required
+            #nombre="ngModel" name="nombre" 
+            [(ngModel)]="producto.nombre" > <!-- LLAMAMOS EL CONTADOR PRODUCTO -->
+        <br>
+        <label>Marca</label>
+        <input type="text" id="marca" required
+            #marca="ngModel" name="marca" 
+            [(ngModel)]="producto.marca" >
+        <br>
+        <label>Precio</label>
+        <input type="number" id="precio" required
+            #precio="ngModel" name="precio" 
+            [(ngModel)]="producto.precio" >
+        <br>
+        <label>Unidades</label>
+        <input type="number" id="unidades" required
+            #unidades="ngModel" name="unidades" 
+            [(ngModel)]="producto.unidades" >
+        <br>
+        
+        <button (click)="editarProducto(producto)">Editar Tarea</button>
+        <br>
+       <button (click)="eliminarProducto(producto._id)">Eliminar</button> 
+    </form>
+</div>
